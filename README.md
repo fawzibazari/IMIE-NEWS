@@ -1,2 +1,2 @@
-# IMIE NEWS:
+# IMIE NEWS
 a project for school
