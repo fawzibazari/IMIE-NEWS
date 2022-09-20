@@ -5,6 +5,11 @@ import { ADD_USER } from "../querys";
 
 function Register() {
   const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [nickName, setNickName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [addUser, { data, loading, error }] = useMutation(ADD_USER);
   let input: any;
 
@@ -14,33 +19,52 @@ function Register() {
       <p>Register</p>
       <div>
         <form
-          onSubmit={(e) => {
-            e.preventDefault();            
-            addUser({ variables: { type: {email: "messi", password:"ddd", lastname:"ddd",nickName:"dkdkd",firstName:"ekke",roles:"Admin",createdAt:"Now"} } });
-            input.value = "";
+          onSubmit={(e: any) => {
+            e.preventDefault();  
+            console.log(email);
+            console.log(password);
+            console.log(lastname);
+            
+                      
+            addUser({ variables: { type: {email: email, password:password, lastname:lastname,nickName:nickName,firstName:firstName,roles:"User",createdAt:"Now"} } });
+            e.target.value = "";
           }}
         >
           <label>Username</label><br/>
           <input
-            ref={(node) => {
-              input = node;
-            }}
+          value={nickName}
+          onChange={(e) => setNickName(e.target.value)}
+            
           />
           <div>
             <label>email</label>
             <br />
             <input type="email" name="email" 
-            ref={(node) => {
-              input = node;
-            }}/>
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div>
             <label>Password</label>
             <br />
             <input type="password" name="password" 
-            ref={(node) => {
-              input = node;
-            }}/>
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>LastName</label>
+            <br />
+            <input type="text" name="lastname" 
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}/>
+          </div>
+          <div>
+            <label>firstName</label>
+            <br />
+            <input type="text" name="firstName" 
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}/>
           </div>
           <button type="submit">Add user</button>
         </form>
