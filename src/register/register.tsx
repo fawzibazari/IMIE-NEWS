@@ -1,17 +1,18 @@
 import { useState } from "react";
 import Header from "../header/header";
 import { useQuery, gql, useMutation } from "@apollo/client";
+import { Routes, Route, Navigate, BrowserRouter, useNavigate } from "react-router-dom";
 import { ADD_USER } from "../querys";
 
 function Register() {
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [lastname, setLastname] = useState("");
   const [nickName, setNickName] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [addUser, { data, loading, error }] = useMutation(ADD_USER);
-  let input: any;
+  const [addUser] = useMutation(ADD_USER);
+  const navigate = useNavigate();
+
 
   return (
     <div className="login">
@@ -19,22 +20,22 @@ function Register() {
       <p>Register</p>
       <div>
         <form
-          onSubmit={(e: any) => {
+          onSubmit={(e) => {
             e.preventDefault();  
             console.log(email);
             console.log(password);
             console.log(lastname);
-            
-                      
             addUser({ variables: { type: {email: email, password:password, lastname:lastname,nickName:nickName,firstName:firstName,roles:"User",createdAt:"Now"} } });
-            e.target.value = "";
+            navigate("/login");
           }}
         >
           <label>Username</label><br/>
           <input
           value={nickName}
           onChange={(e) => setNickName(e.target.value)}
-            
+          // ref={(node) => {
+          //   input = node;
+          // }}
           />
           <div>
             <label>email</label>
@@ -57,16 +58,18 @@ function Register() {
             <br />
             <input type="text" name="lastname" 
             value={lastname}
-            onChange={(e) => setLastname(e.target.value)}/>
+            onChange={(e) => setLastname(e.target.value)}
+            />
           </div>
           <div>
             <label>firstName</label>
             <br />
             <input type="text" name="firstName" 
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}/>
+            onChange={(e) => setFirstName(e.target.value)}
+            />
           </div>
-          <button type="submit">Add user</button>
+          <button type="submit" >Add user</button>
         </form>
       </div>
     </div>
