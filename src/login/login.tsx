@@ -1,6 +1,8 @@
+import './login.css'
+
 function Login() {
   return (
-    <div>
+    <div className='login'>
       <p>login</p>
       <div>
         <label>Username</label><br/>
