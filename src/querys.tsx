@@ -53,11 +53,14 @@ query getPost($type: ID!){
   }
 }
 `;
+
+
 export const GET_POSTS = gql`
 query getPosts{
   posts {
     edges {
       node {
+        id
         title
         content
         image_url
@@ -65,6 +68,16 @@ query getPosts{
           nickName
         }
       }
+    }
+  }
+}
+`;
+
+export const DELETE_POST = gql`
+mutation deletePost($input: deletePostInput!){
+  deletePost(input: $input) {
+    post{
+      id
     }
   }
 }
