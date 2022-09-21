@@ -61,6 +61,9 @@ query getPosts{
         title
         content
         image_url
+        users {
+          nickName
+        }
       }
     }
   }
