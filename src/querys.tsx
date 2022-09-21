@@ -42,3 +42,27 @@ mutation createPost($type: createPostInput!){
   }
 }
 `;
+export const GET_POST = gql`
+query getPost($type: ID!){
+  post(id: $type) {
+    id
+    title
+    users{
+      nick_name
+    }
+  }
+}
+`;
+export const GET_POSTS = gql`
+query getPosts{
+  posts {
+    edges {
+      node {
+        title
+        content
+        image_url
+      }
+    }
+  }
+}
+`;
