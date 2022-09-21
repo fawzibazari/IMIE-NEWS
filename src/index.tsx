@@ -11,21 +11,19 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// const client = ...
-
-client
-  .query({
-    query: gql`
-    query catgories {
-      categories{
-       edges{node{
-        name
-      }}
-      }
-    }
-    `,
-  })
-  .then((result) => console.log(result));
+// client
+//   .query({
+//     query: gql`
+//     query catgories {
+//       categories{
+//        edges{node{
+//         name
+//       }}
+//       }
+//     }
+//     `,
+//   })
+//   .then((result) => console.log(result));
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

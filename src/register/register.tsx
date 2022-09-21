@@ -25,7 +25,7 @@ function Register() {
             console.log(email);
             console.log(password);
             console.log(lastname);
-            addUser({ variables: { type: {email: email, password:password, lastname:lastname,nickName:nickName,firstName:firstName,roles:"User",createdAt:"Now"} } });
+            addUser({ variables: { type: {email: email, password:password, lastName:lastname,nickName:nickName,firstName:firstName,roles:["ROLE_USER"],createdAt:"Now"} } });
             navigate("/login");
           }}
         >
@@ -33,9 +33,6 @@ function Register() {
           <input
           value={nickName}
           onChange={(e) => setNickName(e.target.value)}
-          // ref={(node) => {
-          //   input = node;
-          // }}
           />
           <div>
             <label>email</label>
