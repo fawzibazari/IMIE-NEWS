@@ -26,7 +26,7 @@ function Articles() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-function onDelete( id:string) {
+function onDelete(id:string) {
     deletePost({
         variables: {
           input: {
@@ -43,7 +43,7 @@ function onDelete( id:string) {
         <ImageList sx={{ width: 500, height: 450 }}>
           <ImageListItem key="Subheader" cols={2}></ImageListItem>
           {data.posts.edges.map((item: any) => (
-            <ImageListItem key={item.node.id}>
+            <ImageListItem key={item.node.image_url}>
               <img
                 src={`${item.node.image_url}?w=248&fit=crop&auto=format`}
                 alt={item.node.title}
@@ -63,7 +63,7 @@ function onDelete( id:string) {
                   <IconButton
                     sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                     aria-label={`info about ${item.node.title}`}
-                    // onClick={onDelete()}
+                    onClick={() => onDelete(item.node.id)}
                   >
                     <DeleteIcon/>
                   </IconButton>
