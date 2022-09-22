@@ -5,6 +5,7 @@ import Home from "./Home/home";
 import Register from './register/register';
 import NewArticles from './newArticles/NewArticles';
 import Articles from './articles/Articles';
+import { useEffect } from "react";
 
 function App() {
   return (

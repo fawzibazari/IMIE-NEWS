@@ -18,7 +18,7 @@ mutation createUser($type: createUserInput!){
       password,
       createdAt,
       lastName,
-      nickName,
+      userName,
       firstName
     }
   }
@@ -48,7 +48,7 @@ query getPost($type: ID!){
     id
     title
     users{
-      nick_name
+      userName
     }
   }
 }
@@ -65,7 +65,7 @@ query getPosts{
         content
         image_url
         users {
-          nickName
+          userName
         }
       }
     }

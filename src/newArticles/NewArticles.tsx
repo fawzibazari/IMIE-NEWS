@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/header";
 import { ADD_POST } from "../querys";
@@ -11,6 +11,15 @@ function NewArticles() {
   const [alias, setAlias] = useState("");
   const [addPost] = useMutation(ADD_POST);
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token === null) {
+      navigate('/login')
+    }
+    
+  }, )
+  
   return (
     <>
       <Header />
@@ -30,7 +39,7 @@ function NewArticles() {
                   imageUrl: imageUrl,
                   alias: alias,
                   createdAt: "Now",
-                  users: "/api/users/3"
+                  users: "/api/users/1"
                 },
               },
             });

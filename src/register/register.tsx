@@ -25,7 +25,7 @@ function Register() {
             console.log(email);
             console.log(password);
             console.log(lastname);
-            addUser({ variables: { type: {email: email, password:password, lastName:lastname,nickName:nickName,firstName:firstName,roles:["ROLE_USER"],createdAt:"Now"} } });
+            addUser({ variables: { type: {email: email, password:password, lastName:lastname,userName:nickName,firstName:firstName,roles:["ROLE_USER"],createdAt:"Now"} } });
             navigate("/login");
           }}
         >

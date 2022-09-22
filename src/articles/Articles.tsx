@@ -15,39 +15,38 @@ function Articles() {
   const [array, setArray] = useState<[] | any>();
   const [deletePost] = useMutation(DELETE_POST);
   const navigate = useNavigate();
-
-
-  
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    refetch()
+    refetch();
     console.log(data?.posts?.edges);
-    console.log('here');
-    
-  }, );
+    console.log("here");
+    if (token === null) {
+      navigate("/login");
+    }
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-    
-function onDelete(e:any,id:string) {
-  console.log(e);
+
+  function onDelete(e: any, id: string) {
+    console.log(e);
     deletePost({
-        variables: {
-          input: {
-            id: id
-          },
+      variables: {
+        input: {
+          id: id,
         },
-      });
-      refetch()
-      console.log(data.posts.edges);
-      
-    }
+      },
+    });
+    refetch();
+    console.log(data.posts.edges);
+  }
 
   return (
     <>
       <Header />
       <div style={{ display: "inline-table" }}>
-        <ImageList sx={{ width: 800}}>
+        <ImageList sx={{ width: 800 }}>
           <ImageListItem key="Subheader" cols={2}></ImageListItem>
           {data.posts.edges.map((item: any) => (
             <ImageListItem key={item.node.id}>
@@ -60,20 +59,20 @@ function onDelete(e:any,id:string) {
                 title={item.node.title}
                 subtitle={item.node.users.nickName}
                 actionIcon={
-                    <>
-                  <IconButton
-                    sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                    aria-label={`info about ${item.node.title}`}
-                  >
-                    <InfoIcon />
-                  </IconButton>
-                  <IconButton
-                    sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                    aria-label={`info about ${item.node.title}`}
-                    onClick={(e) => onDelete(e,item.node.id)}
-                  >
-                    <DeleteIcon/>
-                  </IconButton>
+                  <>
+                    <IconButton
+                      sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                      aria-label={`info about ${item.node.title}`}
+                    >
+                      <InfoIcon />
+                    </IconButton>
+                    <IconButton
+                      sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                      aria-label={`info about ${item.node.title}`}
+                      onClick={(e) => onDelete(e, item.node.id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
                   </>
                 }
               />
