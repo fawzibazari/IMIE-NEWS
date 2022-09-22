@@ -34,7 +34,8 @@ function NewArticles() {
                 },
               },
             });
-            navigate("/articles");
+            navigate('/articles');
+
           }}
         >
           <label>Title</label>

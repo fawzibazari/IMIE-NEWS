@@ -1,8 +1,10 @@
+import Header from '../header/header';
 import './login.css'
 
 function Login() {
   return (
     <div className='login'>
+      <Header />
       <p>login</p>
       <div>
         <label>Username</label><br/>

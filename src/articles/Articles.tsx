@@ -8,25 +8,29 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router";
 
 function Articles() {
-  const { loading, error, data } = useQuery(GET_POSTS);
+  const { loading, error, data, refetch } = useQuery(GET_POSTS);
   const [array, setArray] = useState<[] | any>();
   const [deletePost] = useMutation(DELETE_POST);
+  const navigate = useNavigate();
 
+
+  
 
   useEffect(() => {
-    console.log(loading);
-    if (loading === false) {
-      setArray(data.posts.edges);
-      console.log(data.posts);
-    }
-  }, [loading]);
+    refetch()
+    console.log(data?.posts?.edges);
+    console.log('here');
+    
+  }, );
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
-
-function onDelete(id:string) {
+    
+function onDelete(e:any,id:string) {
+  console.log(e);
     deletePost({
         variables: {
           input: {
@@ -34,16 +38,19 @@ function onDelete(id:string) {
           },
         },
       });
-}
+      refetch()
+      console.log(data.posts.edges);
+      
+    }
 
   return (
     <>
       <Header />
       <div style={{ display: "inline-table" }}>
-        <ImageList sx={{ width: 500, height: 450 }}>
+        <ImageList sx={{ width: 800}}>
           <ImageListItem key="Subheader" cols={2}></ImageListItem>
           {data.posts.edges.map((item: any) => (
-            <ImageListItem key={item.node.image_url}>
+            <ImageListItem key={item.node.id}>
               <img
                 src={`${item.node.image_url}?w=248&fit=crop&auto=format`}
                 alt={item.node.title}
@@ -63,7 +70,7 @@ function onDelete(id:string) {
                   <IconButton
                     sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                     aria-label={`info about ${item.node.title}`}
-                    onClick={() => onDelete(item.node.id)}
+                    onClick={(e) => onDelete(e,item.node.id)}
                   >
                     <DeleteIcon/>
                   </IconButton>
