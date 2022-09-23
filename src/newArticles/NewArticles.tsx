@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/header";
 import { ADD_POST } from "../querys";
+import jwt_decode from "jwt-decode";
 
 function NewArticles() {
   const [title, setTitle] = useState("");
@@ -12,12 +13,14 @@ function NewArticles() {
   const [addPost] = useMutation(ADD_POST);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  var decoded:Record<string,any> = jwt_decode(token as string);
+
 
   useEffect(() => {
     if (token === null) {
       navigate('/login')
     }
-    
+    console.log(decoded);
   }, )
   
   return (
@@ -39,7 +42,7 @@ function NewArticles() {
                   imageUrl: imageUrl,
                   alias: alias,
                   createdAt: "Now",
-                  users: "/api/users/1"
+                  users: `/api/users/${decoded.id}`
                 },
               },
             });

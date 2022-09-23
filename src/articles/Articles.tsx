@@ -1,5 +1,5 @@
-import { useQuery, gql, useMutation } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { useQuery, useMutation } from "@apollo/client";
+import { useEffect } from "react";
 import Header from "../header/header";
 import { DELETE_POST, GET_POSTS } from "../querys";
 import ImageList from "@mui/material/ImageList";
@@ -12,7 +12,6 @@ import { useNavigate } from "react-router";
 
 function Articles() {
   const { loading, error, data, refetch } = useQuery(GET_POSTS);
-  const [array, setArray] = useState<[] | any>();
   const [deletePost] = useMutation(DELETE_POST);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -57,7 +56,7 @@ function Articles() {
               />
               <ImageListItemBar
                 title={item.node.title}
-                subtitle={item.node.users.nickName}
+                subtitle={item.node.users.userName}
                 actionIcon={
                   <>
                     <IconButton

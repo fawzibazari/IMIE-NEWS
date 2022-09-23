@@ -67,13 +67,6 @@ export default function Header() {
           >
             <Button color="inherit">new Articles</Button>
           </Link>
-          <Link
-            to="/new-article"
-            style={{ textDecoration: "none", color: "inherit" }}
-            className="link"
-          >
-            <Button color="inherit">new Articles</Button>
-          </Link>
         </Toolbar>
       </AppBar>
     </Box>

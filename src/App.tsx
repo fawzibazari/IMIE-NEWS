@@ -1,11 +1,10 @@
 import "./App.css";
 import Login from "./login/login";
-import { BrowserRouter, Route, Routes, Link, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home/home";
-import Register from './register/register';
-import NewArticles from './newArticles/NewArticles';
-import Articles from './articles/Articles';
-import { useEffect } from "react";
+import Register from "./register/register";
+import NewArticles from "./newArticles/NewArticles";
+import Articles from "./articles/Articles";
 
 function App() {
   return (

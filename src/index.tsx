@@ -7,7 +7,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { StyledEngineProvider } from "@mui/material/styles";
 
 const client = new ApolloClient({
-  uri: "https://127.0.0.1:8000/api/graphql",
+  uri: "http://127.0.0.1:8000/api/graphql",
   cache: new InMemoryCache(),
 });
 

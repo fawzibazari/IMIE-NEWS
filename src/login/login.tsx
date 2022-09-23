@@ -13,7 +13,7 @@ function Login() {
 
   async function onSubmit() {
     try {
-      const res = await axios.post("https://localhost:8000/api/login_check", {
+      const res = await axios.post("http://localhost:8000/api/login_check", {
         email: email,
         password: password,
       });
@@ -23,7 +23,7 @@ function Login() {
       navigate("/articles");
     } catch (error) {
       const err = error as AxiosError;
-      console.log(err.code);
+      console.log(err);
       setError(err.code);
     }
   }
