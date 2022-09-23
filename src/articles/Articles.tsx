@@ -10,13 +10,15 @@ import InfoIcon from "@mui/icons-material/Info";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router";
 
+
 function Articles() {
+  const token = localStorage.getItem("token");
   const { loading, error, data, refetch } = useQuery(GET_POSTS);
   const [deletePost] = useMutation(DELETE_POST);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
+    console.log(error);
     refetch();
     console.log(data?.posts?.edges);
     console.log("here");
@@ -56,7 +58,7 @@ function Articles() {
               />
               <ImageListItemBar
                 title={item.node.title}
-                subtitle={item.node.users.userName}
+                subtitle={ "author: " + item.node.users.userName}
                 actionIcon={
                   <>
                     <IconButton

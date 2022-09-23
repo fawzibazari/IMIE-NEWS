@@ -13,15 +13,18 @@ function NewArticles() {
   const [addPost] = useMutation(ADD_POST);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  var decoded:Record<string,any> = jwt_decode(token as string);
-
+  var decoded:Record<string,any>
 
   useEffect(() => {
     if (token === null) {
       navigate('/login')
     }
+    else{
+      decoded = jwt_decode(token as string);
+    }
     console.log(decoded);
   }, )
+
   
   return (
     <>
